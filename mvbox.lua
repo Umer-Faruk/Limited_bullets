@@ -19,6 +19,7 @@ function Mbox:update(dt)
                
                self.createbox()
                table.remove(boxs,i)
+               score = score - 1
             end
           end
           

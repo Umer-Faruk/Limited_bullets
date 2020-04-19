@@ -57,6 +57,7 @@ function Enemy:update(dt)
                if iscollide(bullet.x,bullet.y,bullet.width,bullet.height,box.x,box.y,box.width,box.height) then
                    table.remove(boxs,j)
                    table.remove(self.bullets,i)
+                   score = score+1
                    mb:createbox()
                end
           end

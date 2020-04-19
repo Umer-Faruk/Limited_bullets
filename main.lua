@@ -2,6 +2,8 @@ p1bullethose = {x=730,y=530,width=70,height=70}
 p2bullethose = {x=0,y=0,width=70,height=70}
 myfount1 = love.graphics.newFont(20)
 background = {x=10,y=10,width=780,height=580,c={.2,.45,.14}}
+score = 0
+
 function love.load()
      Object = require "classic"
                require "player"
@@ -13,11 +15,25 @@ function love.load()
      e= Enemy()
      b = Bullet(p.p1.x,p.p1.y)
      b1 = Bullet(p.p1.x,p.p1.y)
-     -- box = Mbox()
+     box = Mbox()
      -- box.createbox()
      -- BL ={}
      print(p1bullethose.x,p1bullethose.y,p1bullethose.width,p1bullethose.height)
+     music = love.audio.newSource( 'Honaa (1).wav', 'static' )
+     music:setLooping( true ) --so it doesnt stop
+     music:setVolume(music:getVolume()-0.5)
+     music:play()
+     if score > 10 then 
+          box:createbox()
+     end
 
+     function dead()
+          if score < -10 then
+               love.graphics.setColor(1,1,1)
+               love.graphics.print("Game over",100,100)
+          end
+
+     end
     
 end
 
@@ -26,9 +42,13 @@ function love.update(dt)
      p:update(dt)
      e:update(dt)
      -- box:update(dt)
+     -- if score > 10 then 
+     --      box:createbox()
+     -- end
      
-     
-    
+     if love.keyboard.isDown('q') then
+          love.event.quit()
+     end
 
 end
 
@@ -37,6 +57,9 @@ function love.draw()
     
      p:draw()
      e:draw()
+     love.graphics.setColor(1,1,1)
+     love.graphics.print("SCore:" ..score,680,100)
+     love.graphics.print("q -> exit",680,70)
      
      love.graphics.setColor(1,0,0)
      love.graphics.rectangle("line",p1bullethose.x,p1bullethose.y,p1bullethose.width,p1bullethose.height)
@@ -52,6 +75,7 @@ function love.draw()
      love.graphics.print("load \n bullet",p2bullethose.x,p2bullethose.y)
 
      -- box:draw()
+     dead()
 
      
      -- love.graphics.setColor(background.c)
@@ -63,3 +87,4 @@ function love.draw()
 
 
 end
+

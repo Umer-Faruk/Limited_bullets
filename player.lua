@@ -4,6 +4,7 @@ Player = Object.extend(Object)
 -- canShootTimerMax = 0.5
 -- canShootTimer = canShootTimerMax
 bulletspeed = 400
+bulletshot = love.audio.newSource( 'shootb.wav', 'static' )
 
 
 local  nbullet = 0
@@ -54,11 +55,12 @@ function Player:update(dt)
      end
      --bullet creation
     if love.keyboard.isDown('up') and  canShoot then 
+          
           newbullet = { x= self.p1.x,y = self.p1.y ,width =2 ,height=4, img = self.bimage}
          
-
+         
           if nbullet < mnbullet then
-     
+               
           table.insert(self.bullets,newbullet)
           nbullet = nbullet + 1
           end
@@ -74,6 +76,7 @@ function Player:update(dt)
                if iscollide(bullet.x,bullet.y,bullet.width,bullet.height,box.x,box.y,box.width,box.height) then
                     table.remove(boxs,j)
                     table.remove(self.bullets,i)
+                    score = score + 1
                     mb:createbox()
                     
                end
@@ -111,6 +114,8 @@ function Player:draw()
      for i, bullet in ipairs(self.bullets) do
 
           love.graphics.draw(bullet.img, bullet.x, bullet.y)
+         
+          
         end
       
         love.graphics.setColor(0,0,0)
