@@ -23,7 +23,7 @@ player 2  controls:
 'a'  <- move right
 'w'  fire bullet
 
-each player comtain minimum 7 bullets
+each player has minimum 7 bullets
 load bullet to refill the bullets
 
 'q' exit the game
