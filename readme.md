@@ -4,6 +4,13 @@ A simple game in lua with love2d framework
 it cam be play as single player or multyplayer game 
 
 
+
+:download limitedbullet.love file witch is executable file
+
+
+----------------------or---------------------------------------------------
+
+
 how to start  
 install love2d : https://love2d.org/#download
 
